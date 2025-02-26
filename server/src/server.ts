@@ -2,7 +2,8 @@
 
 import express from 'express';
 import path from 'node:path';
-import db from './config/connection.js';
+import connection from './config/connection.js';
+import http from 'http';
 // import routes from './routes/index.js';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
@@ -11,6 +12,8 @@ import { authenticateToken } from './services/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+connection();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -42,11 +45,13 @@ app.use(
   }),
 );
 
+const httpServer = http.createServer(app)
+
 // Modified server startup
 await new Promise<void>((resolve) =>
   httpServer.listen({ port: PORT }, resolve),
 );
-console.log(`🚀 Server ready at http://localhost:4000/`);
+console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
 
 // db.once('open', () => {
 //   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));

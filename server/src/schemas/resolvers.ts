@@ -1,30 +1,44 @@
+import User from "../models/User.js";
+import { signToken } from "../services/auth.js";
+
 const resolvers = {
     Query: {
         me: async (_: any, _args: any) => {
             try {                
-                const shelters = await Shelter.find()
-                return shelters;
+                // const user = await User.findOne()
+                // return user;
+                return;
             } catch (error) {
-                console.error('Error fetching shelters:', error);
-                throw new Error('Failed to fetch shelters');
+                console.error('Error fetching users:', error);
+                throw new Error('Failed to fetch users');
             }
         },
-        
     },
     Mutation: {
-        // createShelter: async (_: any, { input }: { input: any }, context: any) => {
-            // Verify that the user is logged in and has shelter/rescue privileges.
-            // if (!context.user || !context.user.isShelter) {
-            //     throw new Error('Unauthorized');
-            // }
+        createUser: async (_: any, { input }: { input: any }) => {
+            const user = await User.create(input);
+            const token = signToken(user.username, user.password, user._id); 
+            return { user, token };
+        },
 
-            // const shelter = new Shelter({
-            //     ...input
-            // });
+        login: async (_: any, { email, password }: any) => {
+            const user = await User.findOne({
+                email
+            });
 
-            // return await shelter.save();
-        // },
+            if(!user) {
+                throw new Error("no user found");
+            }
 
+            const passwordVerify = await user.isCorrectPassword(password);
+
+            if(!passwordVerify) {
+                throw new Error("Password doesn't match. Please try again.");
+            }
+
+            const token = signToken(user.username, user.password, user._id); 
+            return { user, token };
+        },
     },
 }
 

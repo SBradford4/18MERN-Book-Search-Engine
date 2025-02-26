@@ -24,6 +24,17 @@ const typeDefs  = `
         token: String
         user: User
     }
+
+    input CreateUserInput {
+        username: String!
+        email: String!
+        password: String!
+    }
+
+    type Mutation {
+        createUser(input: CreateUserInput!): Auth
+        login(email: String!, password: String!): Auth
+    }
 `;
 
 export default typeDefs;
