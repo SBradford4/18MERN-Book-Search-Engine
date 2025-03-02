@@ -17,19 +17,11 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];
-
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
-    jwt.verify(token, secretKey, (err, user) => {
-      if (err) {
-        return res.sendStatus(403); // Forbidden
-      }
+    const user = jwt.verify(token, secretKey);
 
-      // req.user = user as JwtPayload;
-      // return next();
-
-      return { user };
-    });
+    return { user };
   } else {
     // res.sendStatus(401); // Unauthorized
     return { user: null };
