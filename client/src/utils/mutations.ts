@@ -38,8 +38,6 @@ export const ADD_USER = gql `
       link
       title
     }
-
-
     }
   }
 }

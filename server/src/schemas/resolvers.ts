@@ -1,6 +1,21 @@
 import User from "../models/User.js";
 import { signToken } from "../services/auth.js";
 
+interface Book {
+    bookId: string;
+}
+
+interface AddBook {
+    book: {
+        bookId: string;
+        authors: string[];
+        description: string;
+        image: string;
+        link: string;
+        title: string;
+    }
+}
+
 const resolvers = {
     Query: {
         me: async (_parent: any, _args: any, context: any) => {
@@ -41,7 +56,7 @@ const resolvers = {
             return { user, token };
         },
 
-        saveBook: async (_: any, { book }: any, context: any) => {
+        saveBook: async (_: any, { book }: AddBook, context: any) => {
             if (context.user) {
                 try {
                     const userBooks = await User.findOneAndUpdate(
@@ -68,9 +83,7 @@ const resolvers = {
             return;
         },
 
-
-        removeBook: async (_: any, { bookId }: any, context: any) => {
-            console.log(bookId)
+        removeBook: async (_: any, { bookId }: Book, context: any) => {
             if (context.user) {
                 try {
                     const userBooks = await User.findOneAndUpdate(

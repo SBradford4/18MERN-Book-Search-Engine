@@ -1,10 +1,6 @@
-// @ts-nocheck
-
 import express from 'express';
 import path from 'node:path';
 import db from './config/connection.js';
-import http from 'http';
-// import routes from './routes/index.js';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from "./schemas/index.js";
@@ -13,12 +9,8 @@ import { authenticateToken } from './services/auth.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// connection();
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// app.use(routes);
 
 const server = new ApolloServer({
   typeDefs,
@@ -45,16 +37,6 @@ app.use(
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-
-
-// const httpServer = http.createServer(app)
-
-// // Modified server startup
-// await new Promise<void>((resolve) =>
-//   httpServer.listen({ port: PORT }, resolve),
-// );
-// console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
-
 db.on('error', () => {
   console.log("error connecting")
 });

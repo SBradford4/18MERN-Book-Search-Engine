@@ -12,7 +12,7 @@ interface JwtPayload {
   email: string,
 }
 
-export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateToken = ({ req }: any) => {
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
