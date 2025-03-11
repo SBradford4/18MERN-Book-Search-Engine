@@ -1,29 +1,86 @@
-# Software Development Course Overview
+# MERN BOOK SEARCH-ENGINE
 
-Welcome to the Software Development Boot Camp! This curriculum is broken down into three phases, with a group project at the end of each phase. Let's delve into what each phase covers and what students will create during the project weeks.
+## Description
 
-## What to Expect in Phase 1 
+MERN Book Search Engine is a full-stack web application that allows users to search for books using the Google Books API, save books to their account, and manage their saved books. Originally built with a RESTful API, the application has been refactored to use GraphQL with Apollo Server for more efficient and scalable data management.
 
-The first part of the course focuses on the front end&mdash;the words, images, and forms you see and interact with in the browser. Students will learn about HTML, CSS, JavaScript, and browser APIs.
+## Table of Contents
 
-## Project 1
+- [Installation]
+- [Usage]
+- [Technologies]
+- [License]
+- [Contributing]
+- [Questions]
+- [Links]
 
-Students will develop a complex client-side web application with a project team.
+## Installation
 
-## What to Expect in Phase 2 
+To install and set up the application locally, follow these steps:
 
-The second phase of the course focuses on the back end and connecting it to the front end. Students will learn to work with Node.js and TypeScript, build servers and consume APIs, connect to databases, use generative AI and prompt engineering, and build a full-stack application using React on the front end.
+## Clone the Repository:
 
-## Project 2
+git clone https://github.com/YOUR_GITHUB_USERNAME/mern-book-search-engine.git
+cd mern-book-search-engine
 
-Students will develop a complex full-stack application with a project team, creating a server-side API, adding a React front end and user authentication, and connecting it to a database.
+## Install Dependencies:
 
-## What to Expect in Phase 3 
+npm install
+cd client && npm install
 
-In the final phase of the course, students will learn how to make their applications more performant and efficient, working with NoSQL databases to build full-stack MERN applications. They'll also learn skills and topics vital to their roles in the workplace, including testing, CI/CD and automation, and object-oriented programming. Finally, they'll work with a second programming language, learning the fundamentals of Python.
+## Set Up Environment Variables:
+Create a .env file in the root directory and add:
 
-## Project 3
+MONGODB_URI=<Your MongoDB Atlas Connection String>
+SECRET=<Your JWT Secret>
 
-Students will develop a complex full-stack single-page application with a project team, using either the MERN (MongoDB, Express.js, React, Node.js) stack or replacing Node.js and Express.js with a Python back end.
+Run the Application (Development Mode):
 
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+npm run develop
+
+The app should now be running at http://localhost:3000.
+
+Usage
+
+Users can search for books via the Google Books API.
+
+Users can sign up/log in to save books to their account.
+
+Saved books can be viewed, managed, and removed.
+
+Authentication is handled via JWT.
+
+The backend has been refactored from RESTful API to GraphQL with Apollo Server.
+
+## Technologies
+
+Frontend: React, Apollo Client
+
+Backend: Node.js, Express.js, GraphQL with Apollo Server
+
+Database: MongoDB Atlas
+
+Authentication: JSON Web Tokens (JWT)
+
+Deployment: Render
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contributing
+
+Contributions are welcome! Feel free to fork the repository, create a feature branch, and submit a pull request.
+
+## Questions
+
+If you have any questions about the project, feel free to reach out via GitHub:
+
+GitHub: Shelia Bradford [https://github.com/SBradford4/](https://github.com/SBradford4/)
+
+## Links
+
+Live Application: Deployed Application
+
+GitHub Repository: https://github.com/SBradford4/18MERN-Book-Search-Engine
+
