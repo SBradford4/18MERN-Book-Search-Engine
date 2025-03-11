@@ -1,12 +1,12 @@
 import express from 'express';
 import path from 'node:path';
 import type { Request, Response } from 'express';
-import db from './config/connection.js';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from "./schemas/index.js";
 import { authenticateToken } from './services/auth.js';
 
+import db from './config/connection.js';
 const PORT = process.env.PORT || 3001;
 
 
@@ -31,8 +31,8 @@ const startApolloServer = async ()=> {
     '/graphql',
     // expressMiddleware accepts the same arguments:
     // an Apollo Server instance and optional configuration options
-    expressMiddleware(server, {
-      context: async ({ req }) => authenticateToken(req),
+    expressMiddleware(server as any, {
+      context:  authenticateToken as any
     }),
   );
   

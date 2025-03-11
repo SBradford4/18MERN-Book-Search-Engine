@@ -1,27 +1,12 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 dotenv.config();
 
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/googlebooks');
 const db = mongoose.connection; 
 export default db;
 
 
 
 
-// import mongoose from 'mongoose';
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// const connection = async () => {
-//     mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks')
-//         .then(() => {
-//             console.log(`successfully connected`);
-//         }).catch(() => {
-//             console.log(`not connected`);
-//         });
-// }
-
-
-// export default connection;
